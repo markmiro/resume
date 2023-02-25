@@ -30,3 +30,12 @@ a:any-link {
 a:hover {
   text-decoration: underline;
 }
+
+@page {
+  margin: 0mm;
+}
+
+body{
+  -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
+}

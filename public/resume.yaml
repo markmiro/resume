@@ -1,5 +1,9 @@
+updated: Feb 24, 2023
 name: Mark Miro
 nameRest: nyuk
+nameNote: |-
+  My legal last name includes this part,
+  but I almost always leave it off for online accounts.
 title: UI Engineer / Frontend Developer
 location: |-
   Sacramento, CA USA
@@ -9,31 +13,40 @@ websiteText: markmiro.com 👉
 email: contact@markmiro.com
 
 skills:
-  - title: JAVASCRIPT / TYPESCRIPT
+  - title: JavaScript / TypeScript
     desc: |-
-      React • Node • Redux • Electron
-      Next.js • Gatsby
+      React • Node.js • Redux
+      Electron.js • Next.js • Gatsby
   - title: CSS
     desc: |-
       Chakra UI • Sass • CSS Modules
       styled-components • tailwind • tachyons
-  - title: DESIGN
+  - title: Design
     desc: |-
       Figma • Sketch
       Photoshop • Illustrator
-  - title: MISC.
+  - title: Misc.
     desc: |-
       Vim • Zsh • Git
       Regex • Web3
 
 positions:
   -
+    org: Freelance Projects
+    title: Full Stack Engineer
+    from: May 2019
+    to: Now
+    desc: |-
+      Built various projects and helped friends with theirs. Some projects I worked on included a web browser with tree-style tabs, a typing test app, a crypto notary app, and a Chrome extension.
+    skills: |-
+      TypeScript: React • CSS: tachyons, Tailwind & Chakra UI • MISC: Node.js, Prisma, Postgres
+  -
     org: TrustToken
     title: Senior UI Engineer
     from: May 2019
     to: Nov 2019
     desc: |-
-      Built internal tools for handling compliance work • performed user tests and user interviews to learn how they do their work • implemented an interface that was very different from what they had, but they loved how much more efficient they were with their work.
+      Built internal tools for handling compliance work Performed user tests and user interviews to learn how they do their work. Implemented an interface that was very different from what they had, but they loved how much more efficient they were with their work.
     skills: |-
       TypeScript: React • CSS: styled-components, tachyons • Node.js
   -
@@ -42,8 +55,8 @@ positions:
     from: Aug 2017
     to: Nov 2018
     desc: |-
-      Worked on mostly customer-facing features: messenger • booking negotiation • in-app notifications • helped build reusable components for the design system • ran A/B tests.
-      Worked with PM, design, and collaborated with engineers across many different teams.
+      Worked on customer-facing features including: in-app messenger, booking negotiation, in-app notifications, helped build reusable components for the design system, and ran A/B tests.
+      Worked with PM, design, and collaborated with engineers across different teams.
     skills: |-
       JavaScript: React • CSS: styled-components • PHP
   -
@@ -52,10 +65,10 @@ positions:
     from: Mar 2015
     to: Apr 2017
     desc: |-
-      Drove frontend architectural decisions • managed frontend build with Webpack and Gulp.js • wrote much of the app’s UI • built an Electron app.
+      Drove frontend architectural decisions. Managed frontend build. Wrote much of the app’s UI. Built an Electron app to manage the backup virtual appliance.
       Initiated and ran usability tests and user interviews • gathered frequent feedback from support.
     skills: |-
-      JavaScript: React • CSS: Sass • PHP
+      JavaScript: React, Electron.js, Webpack • CSS: Bootstrap, Sass • PHP
   -
     org: Ask Ziggy
     title: UX / Software Engineer
@@ -72,6 +85,8 @@ positions:
     to: 2012
     desc: |-
       Team lead of the transportation department website (this was a student role) • created a reusable custom Wordpress template that was later adopted by 4 other departments.
+    skills: |-
+      WordPress · JavaScript · HTML · PHP
 
 education: UC Davis, B.A. in Computer Science (unfinished)
 ref: References Available Upon Request
