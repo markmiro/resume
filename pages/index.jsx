@@ -37,7 +37,7 @@ const SplitNewLines = ({ children }) => {
   return (
     <>
       {items.map((item, i) => (
-        <p>{item}</p>
+        <p key={i}>{item}</p>
       ))}
     </>
   );
@@ -110,8 +110,8 @@ const Skills = () => {
   return (
     <div className="flex gap-2 justify-between">
       {/* <pre>{JSON.stringify(skills, null, 2)}</pre> */}
-      {skills.map((skill) => (
-        <div className="flex flex-col gap-1">
+      {skills.map((skill, i) => (
+        <div key={i} className="flex flex-col gap-1">
           <b className="text-black">{skill.title}</b>
           <Small>
             <SplitNewLines>{skill.desc}</SplitNewLines>
@@ -142,8 +142,9 @@ const Positions = () => {
   const { positions } = React.useContext(ResumeContext);
   return (
     <>
-      {positions.map((position) => (
+      {positions.map((position, i) => (
         <div
+          key={i}
           className="grid gap-2"
           style={{
             gridTemplateColumns: "repeat(1, 22ch minmax(0, 1fr))",
