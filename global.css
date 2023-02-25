@@ -14,10 +14,6 @@ html, body {
   overscroll-behavior: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 /*
 Printing styles
 - Force print without margins.

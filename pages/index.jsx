@@ -2,6 +2,8 @@ import React from "react";
 import Head from "next/head";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+import { FileText, Github } from "lucide-react";
+import slugify from "slugify";
 
 // --- Helpers ---
 
@@ -103,10 +105,10 @@ const Header = () => {
         <HeaderBlock>
           <SmallMono>Portfolio</SmallMono>
           <div>
-            <a href={website} className="block font-semibold">
+            <a href={website} className="block font-semibold hover:underline">
               {websiteText}
             </a>
-            <a href={`mailto:${email}`}>{email}</a>
+            <a href={`mailto:${email}`} className="hover:underline">{email}</a>
           </div>
         </HeaderBlock>
       </div>
@@ -254,15 +256,37 @@ export async function getStaticProps() {
   };
 }
 
-const printMessage = (
-  <div
-    className="bg-blue-500 shadow-md shadow-blue-200 text-white text-center top-0 sticky z-10 print:hidden"
-    style={{ padding: "8px", fontSize: "16px" }}
-  >
-    🖨️ This page is ready to print
-    <div className="opacity-60" style={{ fontSize: "13px" }}>
-      (or save as a PDF)
-    </div>
+// Printing doesn't work well in Safari (iOS and macOS)
+// const printMessage = (
+//   <div
+//     className="bg-blue-500 shadow-md shadow-blue-200 text-white text-center top-0 sticky z-10 print:hidden"
+//     style={{ padding: "8px", fontSize: "16px" }}
+//   >
+//     🖨️ This page is ready to print
+//     <div className="opacity-60" style={{ fontSize: "13px" }}>
+//       (or save as a PDF)
+//     </div>
+//   </div>
+// );
+
+const downloadMessage = (
+  <div className="top-0 left-1/2 -translate-x-1/2 fixed z-10 m-3 flex items-center bg-neutral-100 border border-neutral-300 p-2 rounded-full">
+    <a
+      href="/Mark-Mironyuk-Resume-Feb-24-2023-09_50-PM.pdf"
+      className="flex items-center gap-2 rounded-full max-w-fit cursor-pointer bg-red-500 hover:bg-red-600 border border-red-700 transition-colors shadow-md shadow-red-300 text-white text-center"
+      style={{ padding: "8px 16px", fontSize: "16px" }}
+    >
+      <FileText size="20" />
+      Open PDF Version
+    </a>
+    <a
+      href="https://github.com/markmiro/resume"
+      className="flex gap-1 items-center hover:underline"
+      style={{ padding: "8px 16px", fontSize: "16px" }}
+    >
+      <Github size="20" />
+      View on GitHub
+    </a>
   </div>
 );
 
@@ -271,9 +295,13 @@ function Home(props) {
   return (
     <>
       <Head>
-        <title>{`${name}${nameRest} Resume - ${updated}`}</title>
+        {/* When saving as a PDF in Chrome, this title is used for the file name */}
+        <title>{slugify(`${name}${nameRest} Resume - ${updated}`)}</title>
       </Head>
-      {printMessage}
+      <div className="print:hidden">
+        {/* {printMessage} */}
+        {downloadMessage}
+      </div>
       <ResumeContext.Provider value={props.doc}>
         <Page>
           <Header />
