@@ -1,14 +1,32 @@
-body {
-  font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
-  margin: 0 auto;
-  font-size: 16px;
-  line-height: 1.65;
-  word-break: break-word;
-  font-kerning: auto;
-  font-variant: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  hyphens: auto;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* For rem units in tailwind */
+  /* Sizing based on viewport */
+  font-size: 1.5vw;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #00000022;
+}
+
+a:any-link {
+  color: #000;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }

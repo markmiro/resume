@@ -1,0 +1,77 @@
+name: Mark Miro
+nameRest: nyuk
+title: UI Engineer / Frontend Developer
+location: |-
+  Sacramento, CA USA
+  (or SF Bay Area)
+website: https://markmiro.com
+websiteText: markmiro.com 👉
+email: contact@markmiro.com
+
+skills:
+  - title: JAVASCRIPT / TYPESCRIPT
+    desc: |-
+      React • Node • Redux • Electron
+      Next.js • Gatsby
+  - title: CSS
+    desc: |-
+      Chakra UI • Sass • CSS Modules
+      styled-components • tailwind • tachyons
+  - title: DESIGN
+    desc: |-
+      Figma • Sketch
+      Photoshop • Illustrator
+  - title: MISC.
+    desc: |-
+      Vim • Zsh • Git
+      Regex • Web3
+
+positions:
+  -
+    org: TrustToken
+    title: Senior UI Engineer
+    from: May 2019
+    to: Nov 2019
+    desc: |-
+      Built internal tools for handling compliance work • performed user tests and user interviews to learn how they do their work • implemented an interface that was very different from what they had, but they loved how much more efficient they were with their work.
+    skills: |-
+      TypeScript: React • CSS: styled-components, tachyons • Node.js
+  -
+    org: Thumbtack
+    title: UI Engineer
+    from: Aug 2017
+    to: Nov 2018
+    desc: |-
+      Worked on mostly customer-facing features: messenger • booking negotiation • in-app notifications • helped build reusable components for the design system • ran A/B tests.
+      Worked with PM, design, and collaborated with engineers across many different teams.
+    skills: |-
+      JavaScript: React • CSS: styled-components • PHP
+  -
+    org: Zetta
+    title: Lead UI Engineer
+    from: Mar 2015
+    to: Apr 2017
+    desc: |-
+      Drove frontend architectural decisions • managed frontend build with Webpack and Gulp.js • wrote much of the app’s UI • built an Electron app.
+      Initiated and ran usability tests and user interviews • gathered frequent feedback from support.
+    skills: |-
+      JavaScript: React • CSS: Sass • PHP
+  -
+    org: Ask Ziggy
+    title: UX / Software Engineer
+    from: Jul 2012
+    to: Jun 2014
+    desc: |-
+      Created prototype apps that integrated voice and gesture to help answer what the next generation of human-computer interaction looks like.
+    skills: |-
+      JavaScript: Backbone.js • IOS: Objective-C • ANDROID: Java • Windows: C#
+  -
+    org: UC Davis ITS Department
+    title: Team Lead / Web Developer
+    from: 2011
+    to: 2012
+    desc: |-
+      Team lead of the transportation department website (this was a student role) • created a reusable custom Wordpress template that was later adopted by 4 other departments.
+
+education: UC Davis, B.A. in Computer Science (unfinished)
+ref: References Available Upon Request
