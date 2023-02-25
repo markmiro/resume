@@ -1,8 +1,9 @@
-updated: Feb 24, 2023
+# Should be generated
+updated: 
 name: Mark Miro
 nameRest: nyuk
 nameNote: |-
-  My legal last name includes this part,
+  My legal last name includes the gray part,
   but I almost always leave it off for online accounts.
 title: UI Engineer / Frontend Developer
 location: |-
@@ -13,22 +14,22 @@ websiteText: markmiro.com 👉
 email: contact@markmiro.com
 
 skills:
-  - title: JavaScript / TypeScript
+  - title: JavaScript
     desc: |-
-      React • Node.js • Redux
-      Electron.js • Next.js • Gatsby
+      TypeScript / React / Node.js / Redux
+      Electron.js / Next.js / Gatsby
   - title: CSS
     desc: |-
-      Chakra UI • Sass • CSS Modules
-      styled-components • tailwind • tachyons
+      Chakra UI / Sass / CSS Modules
+      styled-components / tailwind / tachyons
   - title: Design
     desc: |-
-      Figma • Sketch
-      Photoshop • Illustrator
+      Figma / Sketch
+      Photoshop / Illustrator
   - title: Misc.
     desc: |-
-      Vim • Zsh • Git
-      Regex • Web3
+      Vim / Zsh / Git
+      Regex / Web3
 
 positions:
   -
@@ -37,9 +38,11 @@ positions:
     from: May 2019
     to: Now
     desc: |-
-      Built various projects and helped friends with theirs. Some projects I worked on included a web browser with tree-style tabs, a typing test app, a crypto notary app, and a Chrome extension.
-    skills: |-
-      TypeScript: React • CSS: tachyons, Tailwind & Chakra UI • MISC: Node.js, Prisma, Postgres
+      Some projects I worked on included a web browser with tree-style tabs, a typing test app, a crypto notary app, a Chrome extension, and a website for presenting immigration reports.
+    skills:
+      - TypeScript: React, Node.js
+      - CSS: tachyons, Tailwind, Chakra UI
+      - Misc: Prisma, Postgres
   -
     org: TrustToken
     title: Senior UI Engineer
@@ -47,8 +50,9 @@ positions:
     to: Nov 2019
     desc: |-
       Built internal tools for handling compliance work Performed user tests and user interviews to learn how they do their work. Implemented an interface that was very different from what they had, but they loved how much more efficient they were with their work.
-    skills: |-
-      TypeScript: React • CSS: styled-components, tachyons • Node.js
+    skills:
+      - JavaScript: TypeScript, React, Node.js
+      - CSS: styled-components, tachyons
   -
     org: Thumbtack
     title: UI Engineer
@@ -57,8 +61,10 @@ positions:
     desc: |-
       Worked on customer-facing features including: in-app messenger, booking negotiation, in-app notifications, helped build reusable components for the design system, and ran A/B tests.
       Worked with PM, design, and collaborated with engineers across different teams.
-    skills: |-
-      JavaScript: React • CSS: styled-components • PHP
+    skills:
+      - JavaScript: React
+      - CSS: styled-components
+      - Backend: PHP
   -
     org: Zetta
     title: Lead UI Engineer
@@ -66,9 +72,11 @@ positions:
     to: Apr 2017
     desc: |-
       Drove frontend architectural decisions. Managed frontend build. Wrote much of the app’s UI. Built an Electron app to manage the backup virtual appliance.
-      Initiated and ran usability tests and user interviews • gathered frequent feedback from support.
-    skills: |-
-      JavaScript: React, Electron.js, Webpack • CSS: Bootstrap, Sass • PHP
+      Initiated and ran usability tests and user interviews / gathered frequent feedback from support.
+    skills:
+      - JavaScript: React, Electron.js, Webpack
+      - CSS: Bootstrap, Sass
+      - Backend: PHP
   -
     org: Ask Ziggy
     title: UX / Software Engineer
@@ -76,17 +84,20 @@ positions:
     to: Jun 2014
     desc: |-
       Created prototype apps that integrated voice and gesture to help answer what the next generation of human-computer interaction looks like.
-    skills: |-
-      JavaScript: Backbone.js • IOS: Objective-C • ANDROID: Java • Windows: C#
+    skills:
+      - Web: Backbone.js, CSS
+      - iOS: Objective-C
+      - Android: Java
+      - Windows: C#
   -
     org: UC Davis ITS Department
     title: Team Lead / Web Developer
     from: 2011
     to: 2012
     desc: |-
-      Team lead of the transportation department website (this was a student role) • created a reusable custom Wordpress template that was later adopted by 4 other departments.
-    skills: |-
-      WordPress · JavaScript · HTML · PHP
+      Team lead of the transportation department website (this was a student role) / created a reusable custom Wordpress template that was later adopted by 4 other departments.
+    skills:
+      - WordPress: PHP, CSS, HTML, JavaScript
 
 education: UC Davis, B.A. in Computer Science (unfinished)
 ref: References Available Upon Request

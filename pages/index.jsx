@@ -1,33 +1,39 @@
-import { IBM_Plex_Mono, Inter, Space_Mono } from "next/font/google";
-import _styled from "@emotion/styled";
 import React from "react";
 import Head from "next/head";
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
+// --- Helpers ---
 
 const ResumeContext = React.createContext();
 
-const inter = Inter({ subsets: ["latin"] });
-// const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
-const ibmMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["500"],
-});
+// https://ui.shadcn.com/docs/installation#add-a-cn-helper
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
 
-const Small = _styled.span`
-  font-size: 0.7em;
-  font-family: ${ibmMono.style.fontFamily};
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  opacity: 0.5;
-`;
+// --- Generic Components ---
+
+const Hr = () => <hr className="border-neutral-200 w-full" />;
+
+const SmallMono = React.forwardRef(({ className, ...props }, ref) => {
+  return (
+    <span
+      ref={ref}
+      className={cn(
+        `font-mono text-xs uppercase tracking-wider opacity-50 font-medium ${className}`
+      )}
+      {...props}
+    />
+  );
+});
 
 const FirstLineBold = ({ children }) => {
   const [first, ...rest] = children.split("\n");
   return (
     <>
-      <b>{first}</b>
-      <br />
-      {rest}
+      <div className="font-semibold">{first}</div>
+      <div>{rest}</div>
     </>
   );
 };
@@ -51,41 +57,35 @@ const Paragraphs = ({ children }) => {
   );
 };
 
+// --- Resume Components ---
+
 const Name = () => {
   const { name, nameRest, nameNote } = React.useContext(ResumeContext);
   return (
     <>
-      <div className="text-xs text-neutral-400 pb-1 border-b border-neutral-300 -mt-10">
+      <div className="text-xs tracking-wider text-neutral-400 -mt-10">
         <SplitNewLines>{nameNote}</SplitNewLines>
       </div>
-      <div className="text-3xl font-bold">
+      <div className="text-3xl font-semibold">
         {name}
-        <span className="border-r border-dashed border-neutral-300" />
+        {/* <span className="border-r border-dashed border-neutral-300" /> */}
         <span className="opacity-20">{nameRest}</span>
       </div>
     </>
   );
 };
 
-const HeaderHighlight = () => {
-  const { email, website, websiteText } = React.useContext(ResumeContext);
+const HeaderBlock = ({ children }) => {
   return (
     <div className="relative">
       <div className="absolute -top-4 -left-7 -right-7 -bottom-4 rounded-3xl bg-black bg-opacity-5 pointer-events-none" />
-      <Small>Portfolio</Small>
-      <div>
-        <a href={website}>
-          <b>{websiteText}</b>
-        </a>
-        <br />
-        <a href={`mailto:${email}`}>{email}</a>
-      </div>
+      {children}
     </div>
   );
 };
 
-const Heading = () => {
-  const { title, location } = React.useContext(ResumeContext);
+const Header = () => {
+  const { title, location, website, websiteText, email } = React.useContext(ResumeContext);
   return (
     <div className="flex gap-2 justify-between items-end">
       <div>
@@ -93,13 +93,21 @@ const Heading = () => {
         <div>{title}</div>
       </div>
       <div>
-        <Small>Location</Small>
+        <SmallMono>Location</SmallMono>
         <div>
           <FirstLineBold>{location}</FirstLineBold>
         </div>
       </div>
       <div className="mr-4">
-        <HeaderHighlight />
+        <HeaderBlock>
+          <SmallMono>Portfolio</SmallMono>
+          <div>
+            <a href={website} className="block font-semibold">
+              {websiteText}
+            </a>
+            <a href={`mailto:${email}`}>{email}</a>
+          </div>
+        </HeaderBlock>
       </div>
     </div>
   );
@@ -108,15 +116,29 @@ const Heading = () => {
 const Skills = () => {
   const { skills } = React.useContext(ResumeContext);
   return (
-    <div className="flex gap-2 justify-between">
-      {/* <pre>{JSON.stringify(skills, null, 2)}</pre> */}
-      {skills.map((skill, i) => (
-        <div key={i} className="flex flex-col gap-1">
-          <b className="text-black">{skill.title}</b>
-          <Small>
-            <SplitNewLines>{skill.desc}</SplitNewLines>
-          </Small>
-        </div>
+    <>
+      <div className="flex gap-2 justify-between">
+        {skills.map((skill, i) => (
+          <div key={i} className="flex flex-col gap-1">
+            <span className="font-semibold text-xs tracking-wider">{skill.title}</span>
+            <SmallMono>
+              <SplitNewLines>{skill.desc}</SplitNewLines>
+            </SmallMono>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+const InBetween = ({ children, separator }) => {
+  return (
+    <div>
+      {children.map((child, i) => (
+        <React.Fragment key={i}>
+          {child}
+          {i < children.length - 1 && separator}
+        </React.Fragment>
       ))}
     </div>
   );
@@ -124,16 +146,35 @@ const Skills = () => {
 
 const Position = ({ org, title, from, to, skills, desc }) => (
   <>
-    <div className="w-52">
-      <div className="font-bold">{org}</div>
-      <Small>{title}</Small>
-      <Small className="block">
+    <div>
+      <span className="font-semibold">{title}</span>
+      <div className="text-xs tracking-wider opacity-60">
+        <div className="font-semibold">{org}</div>
         {from} – {to}
-      </Small>
+      </div>
     </div>
     <div className="">
       <Paragraphs>{desc}</Paragraphs>
-      {skills && <Small className="block mt-2">{skills}</Small>}
+      {skills && (
+        <div className="block mt-2 tracking-wide">
+          <InBetween separator={<SmallMono className="mx-3">/</SmallMono>}>
+            {skills.map((skill, i) => {
+              // is object
+              if (typeof skill === "object") {
+                return (
+                  <span key={i}>
+                    <span className="text-xs tracking-wider font-semibold opacity-60">
+                      {Object.keys(skill)[0]}:
+                    </span>{" "}
+                    <SmallMono>{skill[Object.keys(skill)[0]]}</SmallMono>
+                  </span>
+                );
+              }
+              return <SmallMono key={i}>{skill}</SmallMono>;
+            })}
+          </InBetween>
+        </div>
+      )}
     </div>
   </>
 );
@@ -147,7 +188,7 @@ const Positions = () => {
           key={i}
           className="grid gap-2"
           style={{
-            gridTemplateColumns: "repeat(1, 22ch minmax(0, 1fr))",
+            gridTemplateColumns: "repeat(1, 23ch minmax(0, 1fr))",
           }}
         >
           <Position {...position} />
@@ -161,7 +202,7 @@ const Education = () => {
   const { education } = React.useContext(ResumeContext);
   return (
     <div className="flex flex-col gap-1">
-      <Small>Education</Small>
+      <SmallMono>Education</SmallMono>
       <div>{education}</div>
     </div>
   );
@@ -171,32 +212,65 @@ const Footer = () => {
   const { ref, updated } = React.useContext(ResumeContext);
   return (
     <div className="flex justify-between">
-      <Small>{ref}</Small>
-      <Small>Resume Updated: {updated}</Small>
+      <SmallMono>{ref}</SmallMono>
+      <SmallMono>Resume Updated: {updated}</SmallMono>
     </div>
   );
 };
 
+const Page = ({ children }) => {
+  // Letter size: 8.5 x 11 inches
+  const LETTER_W = 8.5;
+  const LETTER_H = 11;
+
+  return (
+    <div
+      className="flex flex-col justify-between p-16 shadow-2xl"
+      style={{
+        width: "100vw",
+        height: `${(100 * LETTER_H) / LETTER_W}vw`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// --- Main component ---
+
 export async function getStaticProps() {
-  const yaml = require("js-yaml");
-  const fs = require("fs");
-  const doc = yaml.load(fs.readFileSync("./public/resume.yaml", "utf8"));
+  function getDoc() {
+    const yaml = require("js-yaml");
+    const fs = require("fs");
+    const doc = yaml.load(fs.readFileSync("./public/resume.yaml", "utf8"));
+    return doc;
+  }
+
+  async function getCleanDate() {
+    const { promisify } = require('util');
+    const { exec } = require('child_process');
+    const execAsync = promisify(exec);
+  
+    async function getLastCommitDate() {
+      try {
+        const { stdout } = await execAsync('git log -1 --format=%cd');
+        return stdout.trim();
+      } catch (error) {
+        throw new Error(`Error occurred while running Git command: ${error}`);
+      }
+    }
+  
+    const [_dayOfWeek, month, day, _time, year] = (await getLastCommitDate()).split(' ');
+    const cleanDate = `${month} ${day}, ${year}`;
+    return cleanDate;
+  }
+
   return {
     props: {
-      doc,
+      doc: {...getDoc(), updated: getCleanDate()},
     },
   };
 }
-
-const LETTER_W = 8.5;
-const LETTER_H = 11;
-
-const Page = _styled.div`
-  width: 100vw;
-  height: ${(100 * LETTER_H) / LETTER_W}vw;
-  /* --- */
-  font-family: ${inter.style.fontFamily};
-`;
 
 function Home(props) {
   const { name, nameRest, updated } = props.doc;
@@ -206,17 +280,17 @@ function Home(props) {
         <title>{`${name}${nameRest} Resume - ${updated}`}</title>
       </Head>
       <ResumeContext.Provider value={props.doc}>
-        <Page className="flex flex-col justify-between p-16 shadow-2xl">
-          <Heading />
-          <hr />
+        <Page>
+          <Header />
+          <Hr />
           <Skills />
-          <hr />
+          <Hr />
           <Positions />
           <Education />
-          <hr />
+          <Hr />
           <Footer />
         </Page>
-        {/* <pre className="print:hidden">{JSON.stringify(props.doc, null, 2)}</pre> */}
+        <pre className="print:hidden">{JSON.stringify(props.doc, null, 2)}</pre>
       </ResumeContext.Provider>
     </>
   );

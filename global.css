@@ -2,34 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
-}
-
 html {
   /* For rem units in tailwind */
   /* Sizing based on viewport */
   font-size: 1.5vw;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-hr {
-  width: 100%;
-  border: 0;
-  border-top: 1px solid #00000022;
-}
-
-a:any-link {
-  color: #000;
-  text-decoration: none;
-}
 a:hover {
   text-decoration: underline;
 }
+
+/*
+Printing styles
+- Force print without margins.
+- Force printing backgrounds.
+*/
 
 @page {
   margin: 0mm;
@@ -38,4 +25,12 @@ a:hover {
 body{
   -webkit-print-color-adjust:exact !important;
   print-color-adjust:exact !important;
+}
+
+.resume-dot:after {
+  content: "/";
+  margin: 0 0.5rem;
+}
+.resume-dot:last-child:after {
+  content: "";
 }
