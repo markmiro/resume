@@ -85,7 +85,8 @@ const HeaderBlock = ({ children }) => {
 };
 
 const Header = () => {
-  const { title, location, website, websiteText, email } = React.useContext(ResumeContext);
+  const { title, location, website, websiteText, email } =
+    React.useContext(ResumeContext);
   return (
     <div className="flex gap-2 justify-between items-end">
       <div>
@@ -120,7 +121,9 @@ const Skills = () => {
       <div className="flex gap-2 justify-between">
         {skills.map((skill, i) => (
           <div key={i} className="flex flex-col gap-1">
-            <span className="font-semibold text-xs tracking-wider">{skill.title}</span>
+            <span className="font-semibold text-xs tracking-wider">
+              {skill.title}
+            </span>
             <SmallMono>
               <SplitNewLines>{skill.desc}</SplitNewLines>
             </SmallMono>
@@ -213,7 +216,7 @@ const Footer = () => {
   return (
     <div className="flex justify-between">
       <SmallMono>{ref}</SmallMono>
-      <SmallMono>Resume Updated: {updated}</SmallMono>
+      <SmallMono>Last Updated: {updated}</SmallMono>
     </div>
   );
 };
@@ -239,35 +242,14 @@ const Page = ({ children }) => {
 // --- Main component ---
 
 export async function getStaticProps() {
-  function getDoc() {
-    const yaml = require("js-yaml");
-    const fs = require("fs");
-    const doc = yaml.load(fs.readFileSync("./public/resume.yaml", "utf8"));
-    return doc;
-  }
-
-  async function getCleanDate() {
-    const { promisify } = require('util');
-    const { exec } = require('child_process');
-    const execAsync = promisify(exec);
-  
-    async function getLastCommitDate() {
-      try {
-        const { stdout } = await execAsync('git log -1 --format=%cd');
-        return stdout.trim();
-      } catch (error) {
-        throw new Error(`Error occurred while running Git command: ${error}`);
-      }
-    }
-  
-    const [_dayOfWeek, month, day, _time, year] = (await getLastCommitDate()).split(' ');
-    const cleanDate = `${month} ${day}, ${year}`;
-    return cleanDate;
-  }
+  const yaml = require("js-yaml");
+  const fs = require("fs");
+  const doc = yaml.load(fs.readFileSync("./public/resume.yaml", "utf8"));
+  const updated = fs.readFileSync("./public/updated-date.txt", "utf8")
 
   return {
     props: {
-      doc: {...getDoc(), updated: getCleanDate()},
+      doc: {...doc, updated},
     },
   };
 }
