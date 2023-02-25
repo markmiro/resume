@@ -6,6 +6,8 @@ html {
   /* For rem units in tailwind */
   /* Sizing based on viewport */
   font-size: 1.5vw;
+  /* Set background because page previous should already have a white bg */
+  background: #eee;
 }
 
 a:hover {

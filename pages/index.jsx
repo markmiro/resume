@@ -228,7 +228,7 @@ const Page = ({ children }) => {
 
   return (
     <div
-      className="flex flex-col justify-between p-16 shadow-2xl"
+      className="bg-white flex flex-col justify-between p-16 scale-95 shadow-2xl print:shadow-none print:scale-100"
       style={{
         width: "100vw",
         height: `${(100 * LETTER_H) / LETTER_W}vw`,
@@ -245,14 +245,24 @@ export async function getStaticProps() {
   const yaml = require("js-yaml");
   const fs = require("fs");
   const doc = yaml.load(fs.readFileSync("./public/resume.yaml", "utf8"));
-  const updated = fs.readFileSync("./public/updated-date.txt", "utf8")
+  const updated = fs.readFileSync("./public/updated-date.txt", "utf8");
 
   return {
     props: {
-      doc: {...doc, updated},
+      doc: { ...doc, updated },
     },
   };
 }
+
+const printMessage = (
+  <div
+    className="bg-blue-500 shadow-md shadow-blue-200 text-white text-center top-0 sticky z-10 print:hidden"
+    style={{ padding: '8px', fontSize: "16px" }}
+  >
+    🖨️ This page is ready to print
+    <div className="opacity-60" style={{ fontSize: "13px" }}>(or save as a PDF)</div>
+  </div>
+);
 
 function Home(props) {
   const { name, nameRest, updated } = props.doc;
@@ -261,6 +271,7 @@ function Home(props) {
       <Head>
         <title>{`${name}${nameRest} Resume - ${updated}`}</title>
       </Head>
+      {printMessage}
       <ResumeContext.Provider value={props.doc}>
         <Page>
           <Header />
@@ -272,7 +283,6 @@ function Home(props) {
           <Hr />
           <Footer />
         </Page>
-        <pre className="print:hidden">{JSON.stringify(props.doc, null, 2)}</pre>
       </ResumeContext.Provider>
     </>
   );
