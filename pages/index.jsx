@@ -257,10 +257,12 @@ export async function getStaticProps() {
 const printMessage = (
   <div
     className="bg-blue-500 shadow-md shadow-blue-200 text-white text-center top-0 sticky z-10 print:hidden"
-    style={{ padding: '8px', fontSize: "16px" }}
+    style={{ padding: "8px", fontSize: "16px" }}
   >
     🖨️ This page is ready to print
-    <div className="opacity-60" style={{ fontSize: "13px" }}>(or save as a PDF)</div>
+    <div className="opacity-60" style={{ fontSize: "13px" }}>
+      (or save as a PDF)
+    </div>
   </div>
 );
 
