@@ -108,7 +108,9 @@ const Header = () => {
             <a href={website} className="block font-semibold hover:underline">
               {websiteText}
             </a>
-            <a href={`mailto:${email}`} className="hover:underline">{email}</a>
+            <a href={`mailto:${email}`} className="hover:underline">
+              {email}
+            </a>
           </div>
         </HeaderBlock>
       </div>
@@ -270,23 +272,28 @@ export async function getStaticProps() {
 // );
 
 const downloadMessage = (
-  <div className="top-0 left-1/2 -translate-x-1/2 fixed z-10 m-3 flex items-center bg-neutral-100 border border-neutral-300 p-2 rounded-full">
-    <a
-      href="/Mark-Mironyuk-Resume-Feb-24-2023-09_50-PM.pdf"
-      className="flex items-center gap-2 rounded-full max-w-fit cursor-pointer bg-red-500 hover:bg-red-600 border border-red-700 transition-colors shadow-md shadow-red-300 text-white text-center"
-      style={{ padding: "8px 16px", fontSize: "16px" }}
+  <div className="print:hidden z-10 sticky top-0 grid place-items-center bg-neutral-800 shadow-md" style={{padding: 12}}>
+    <div
+      className="flex bg-neutral-900 border border-neutral-700 rounded-full whitespace-nowrap"
+      style={{ padding: 8 }}
     >
-      <FileText size="20" />
-      Open PDF Version
-    </a>
-    <a
-      href="https://github.com/markmiro/resume"
-      className="flex gap-1 items-center hover:underline"
-      style={{ padding: "8px 16px", fontSize: "16px" }}
-    >
-      <Github size="20" />
-      View on GitHub
-    </a>
+      <a
+        href="/Mark-Mironyuk-Resume-Feb-24-2023-09_50-PM.pdf"
+        className="flex items-center gap-2 rounded-full cursor-pointer bg-red-500 hover:bg-red-600 border border-red-700 transition-colors shadow-md shadow-red-900 text-white text-center"
+        style={{ padding: "8px 16px", fontSize: "14px" }}
+      >
+        <FileText size="20" />
+        Open PDF Version
+      </a>
+      <a
+        href="https://github.com/markmiro/resume"
+        className="flex gap-1 items-center text-white hover:underline"
+        style={{ padding: "8px 16px", fontSize: "14px" }}
+      >
+        <Github size="20" />
+        View on GitHub
+      </a>
+    </div>
   </div>
 );
 
@@ -298,10 +305,8 @@ function Home(props) {
         {/* When saving as a PDF in Chrome, this title is used for the file name */}
         <title>{slugify(`${name}${nameRest} Resume - ${updated}`)}</title>
       </Head>
-      <div className="print:hidden">
-        {/* {printMessage} */}
-        {downloadMessage}
-      </div>
+      {downloadMessage}
+      {/* {printMessage} */}
       <ResumeContext.Provider value={props.doc}>
         <Page>
           <Header />
